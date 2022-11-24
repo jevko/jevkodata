@@ -49,9 +49,9 @@ const inner = (jevko) => {
 
     if (trimmed === 'true') return true
     if (trimmed === 'false') return false
-    if (trimmed === 'null') return null
+    if (trimmed === 'null' || trimmed === "nil") return null
     if (trimmed === 'map') return Object.create(null)
-    if (trimmed === 'list') return []
+    if (trimmed === 'list' || trimmed === "seq") return []
   
     if (trimmed === 'NaN') return NaN
   
