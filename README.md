@@ -9,7 +9,7 @@ A Jevko format for data interchange that decodes this Jevko:
 ```
 This is a comment
 
-title [jevkoconfig1 Example]
+title [jevkodata Example]
 
 owner [
   name [tester]
@@ -69,7 +69,7 @@ into this JSON:
 
 ```json
 {
-  "title": "jevkoconfig1 Example",
+  "title": "jevkodata Example",
   "owner": {
     "name": "tester",
     "dob": "2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]"
