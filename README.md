@@ -4,7 +4,23 @@ NOTE: experimental
 
 Codename .jevkodata.
 
-A Jevko format for data interchange that decodes this Jevko:
+A Jevko format for data interchange that translates to JSON.
+
+Gives you the full power of JSON by supporting its data model and JSON literals.
+
+On top of that you get a much simpler and leaner syntax with:
+
+* comments -- more minimal than in any other format
+* unquoted autotrimmed strings and keys
+* quoted multiline strings and keys
+* here documents (heredocs)
+* ability to disable (comment out) an entire subtree by prefixing it with `-`
+
+Jevko is closed under concatenation, so there is no need for JSON Lines, NDJSON, or anything like that.
+
+# Example
+
+.jevkodata decodes this Jevko:
 
 ```
 This is a comment
