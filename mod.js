@@ -41,6 +41,8 @@ const inner = (jevko) => {
     const {tag} = jevko
 
     if (tag === 'json') return JSON.parse(suffix)
+    // note: other tags make raw heredoc strings -- untrimmed
+    else if (tag !== undefined) return suffix
 
     const trimmed = suffix.trim()
 
