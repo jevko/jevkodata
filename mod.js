@@ -4,7 +4,7 @@ export const fromString = (str) => convert(parseJevkoWithHeredocs(str))
 
 export const convert = (jevko) => inner(prep(jevko))
 
-const prep = jevko => {
+export const prep = jevko => {
   const {subjevkos, ...rest} = jevko
 
   const subs = []
@@ -30,7 +30,6 @@ const prep = jevko => {
   return {subjevkos: subs, ...rest}
 }
 
-// todo: support ' keys '
 const inner = (jevko) => {
   const {subjevkos, suffix} = jevko
 
@@ -71,7 +70,7 @@ const inner = (jevko) => {
   return map(subjevkos)
 }
 
-const list = subjevkos => {
+export const list = subjevkos => {
   const ret = []
   for (const {prefix, jevko} of subjevkos) {
     if (prefix !== '') throw Error('oops')
@@ -80,7 +79,7 @@ const list = subjevkos => {
   return ret
 }
 
-const map = subjevkos => {
+export const map = subjevkos => {
   const ret = Object.create(null)
   for (const {prefix, jevko} of subjevkos) {
     if (prefix === '') throw Error('oops')
