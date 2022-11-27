@@ -1,5 +1,9 @@
 import {parseJevkoWithHeredocs} from "https://cdn.jsdelivr.net/gh/jevko/parsejevko.js@v0.1.8/mod.js"
 
+export const jevkodata = jevko => {
+  return JSON.stringify(convert(jevko))
+}
+
 export const fromString = (str) => convert(parseJevkoWithHeredocs(str))
 
 export const convert = (jevko) => inner(prep(jevko))
