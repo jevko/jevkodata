@@ -1,6 +1,9 @@
 import {parseJevkoWithHeredocs} from "https://cdn.jsdelivr.net/gh/jevko/parsejevko.js@v0.1.8/mod.js"
 
-export const jevkodata = jevko => {
+export const jevkodata = (jevko, props) => {
+  if (Array.isArray(props.flags) && props.flags.includes('pretty')) {
+    return JSON.stringify(convert(jevko), null, 2)
+  }
   return JSON.stringify(convert(jevko))
 }
 

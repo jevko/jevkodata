@@ -1,11 +1,12 @@
 import {parseJevkoWithHeredocs} from "https://cdn.jsdelivr.net/gh/jevko/parsejevko.js@v0.1.8/mod.js"
 import {escape} from 'https://cdn.jsdelivr.net/gh/jevko/jevkoutils.js@v0.1.6/mod.js'
-import {stringToHeredoc} from './lib.js'
+
+const sth = (str, tag) => `\`/${tag}/${str}/${tag}/`
 
 const jevkoToPrettyString = (jevko) => {
   const {subjevkos, suffix, tag} = jevko
 
-  if (tag !== undefined) return stringToHeredoc(suffix)
+  if (tag !== undefined) return sth(suffix, tag)
 
   let ret = ''
   for (const {prefix, jevko} of subjevkos) {
@@ -19,7 +20,7 @@ const escapePrefix = (prefix) => prefix === ''? '': escape(prefix) + ' '
 const recur = (jevko, indent, prevIndent) => {
   const {subjevkos, suffix, tag} = jevko
 
-  if (tag !== undefined) return stringToHeredoc(suffix)
+  if (tag !== undefined) return sth(suffix, tag)
 
   let ret = ''
   if (subjevkos.length > 0) {

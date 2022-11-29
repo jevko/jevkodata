@@ -2,29 +2,46 @@ import {JsonHigh} from 'https://cdn.jsdelivr.net/gh/xtao-org/jsonhilo@v0.3.0/mod
 import {escape} from 'https://cdn.jsdelivr.net/gh/jevko/jevkoutils.js@v0.1.6/mod.js'
 
 
-import {stringToHeredoc} from './lib.js'
+// note: this won't work correctly for keys (prefixes), so MUST NOT be used on them
+const stringToHeredoc = str => {
+  let id = ''
+  let tok = '//'
+  let stret = `${str}${tok}`
+  while (stret.indexOf(tok) !== str.length) {
+    //?todo: more sophisticated id-generation algo
+    id += '='
+    tok = `/${id}/`
+    stret = `${str}${tok}`
+  }
+  return `\`${tok}${stret}`
+}
 
 const enc = new TextEncoder()
 const write = str => Deno.stdout.writeSync(enc.encode(str))
 
 let isEmpty = false
+let depth = 0
 const stream = JsonHigh({
   openArray: () => {
     isEmpty = true
-    write('[')
+    if (depth > 0) write('[')
+    ++depth
   },
   openObject: () => {
     isEmpty = true
-    write('[')
+    if (depth > 0) write('[')
+    ++depth
   },
   closeArray: () => {
     if (isEmpty) write('seq')
-    write(']')
+    --depth
+    if (depth > 0) write(']')
     isEmpty = false
   },
   closeObject: () => {
     if (isEmpty) write('map')
-    write(']')
+    --depth
+    if (depth > 0) write(']')
     isEmpty = false
   },
   key: (key) => {
