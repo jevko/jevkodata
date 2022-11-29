@@ -1,5 +1,10 @@
 import {parseJevkoWithHeredocs} from "https://cdn.jsdelivr.net/gh/jevko/parsejevko.js@v0.1.8/mod.js"
 
+import {fromJsonStr} from './fromJsonStr.js'
+import {jevkoToPrettyString} from './jevkoToPrettyString.js'
+
+export const prettyFromJsonStr = str => jevkoToPrettyString(parseJevkoWithHeredocs(fromJsonStr(str)))
+
 export const jevkodata = (jevko, props) => {
   if (Array.isArray(props.flags) && props.flags.includes('pretty')) {
     return JSON.stringify(convert(jevko), null, 2)
