@@ -34,8 +34,3 @@ const recur = (jevko, indent, prevIndent) => {
   }
   return '[' + ret + escape(suffix) + ']'
 }
-
-// const parsed = parseJevkoWithHeredocs(Deno.readTextFileSync('test.jevkodata'))
-
-// // todo: heredoc-aware pretty printer
-// console.log(jevkoToPrettyString(parsed))

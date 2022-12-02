@@ -31,12 +31,6 @@ const convertValue = value => {
   return `[${value}]`
 }
 
-// stream.chunk('{"tuple": [null, true, false, 1.2e-3, "[demo]"], "empty": []}')
-// stream.chunk(Deno.readTextFileSync('test.json'))
-
-// const enc = new TextEncoder()
-// const write = str => Deno.stdout.writeSync(enc.encode(str))
-
 const makeStream = (write) => {
   let isEmpty = false
   let depth = 0
