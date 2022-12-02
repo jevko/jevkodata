@@ -1,6 +1,14 @@
 import {parseJevkoWithHeredocs} from "https://cdn.jsdelivr.net/gh/jevko/parsejevko.js@v0.1.8/mod.js"
 
-export const jevkodata = jevko => {
+import {fromJsonStr} from './fromJsonStr.js'
+import {jevkoToPrettyString} from './jevkoToPrettyString.js'
+
+export const prettyFromJsonStr = str => jevkoToPrettyString(parseJevkoWithHeredocs(fromJsonStr(str)))
+
+export const jevkodata = (jevko, props) => {
+  if (Array.isArray(props.flags) && props.flags.includes('pretty')) {
+    return JSON.stringify(convert(jevko), null, 2)
+  }
   return JSON.stringify(convert(jevko))
 }
 
@@ -41,6 +49,8 @@ const inner = (jevko) => {
     const {tag} = jevko
 
     if (tag === 'json') return JSON.parse(suffix)
+    // note: other tags make raw heredoc strings -- untrimmed
+    else if (tag !== undefined) return suffix
 
     const trimmed = suffix.trim()
 
