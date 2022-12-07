@@ -4,7 +4,7 @@ NOTE: experimental
 
 Codename .jevkodata.
 
-A Jevko format for data interchange that translates to JSON.
+A [Jevko](https://jevko.org) format for data interchange that translates to JSON.
 
 Gives you the full power of JSON by supporting its data model and JSON literals.
 
@@ -17,6 +17,11 @@ On top of that you get a much simpler and leaner syntax with:
 * ability to disable (comment out) an entire subtree by prefixing it with `-`
 
 Jevko is closed under concatenation, so there is no need for JSON Lines, NDJSON, or anything like that.
+
+.jevkodata is best used in combination with the [Jevko CLI](https://github.com/jevko/jevko-cli) -- which gives you additional features, such as:
+
+* self-contained .jevkodata documents that know how to convert themselves to specific JSON files
+* ability to make .jevkodata documents executable thanks to Jevko CLI support for shebangs -- you can convert a document simply by executing it!
 
 # Example
 
