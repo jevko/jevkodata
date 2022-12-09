@@ -60,6 +60,8 @@ const inner = (jevko) => {
       return trimmed.slice(1)
     }
 
+    if (trimmed === '') return trimmed
+
     if (trimmed === 'true') return true
     if (trimmed === 'false') return false
     if (trimmed === 'null' || trimmed === "nil") return null
@@ -72,9 +74,7 @@ const inner = (jevko) => {
   
     if (Number.isNaN(num) === false) return num
 
-    // todo: recognize different primitive types:
-    // numbers, 'strings, bools, null, regular strings, =list, =map
-    return suffix
+    return trimmed
   }
   if (suffix.trim() !== '') throw Error('oops')
 

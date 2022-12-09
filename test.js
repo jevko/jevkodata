@@ -1,4 +1,5 @@
 import {fromString} from './mod.js'
+import { assertEquals } from "https://deno.land/std@0.165.0/testing/asserts.ts";
 
 const ret = fromString(`
 This is a comment
@@ -84,3 +85,15 @@ owner [
   multiline key ' [value3]
 ]
 `))
+
+console.log("TODO: turn the above console logs into proper tests")
+
+Deno.test('empty string', () => {
+  const obj = fromString(`a [] b [  ] c [''] d ['  ']`)
+  assertEquals(obj, {
+    a: "",
+    b: "",
+    c: "",
+    d: "  ",
+  })
+})
