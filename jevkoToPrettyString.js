@@ -1,6 +1,8 @@
-import {escape} from 'https://cdn.jsdelivr.net/gh/jevko/jevkoutils.js@v0.1.6/mod.js'
+import {escape, defaultDelimiters} from 'https://cdn.jsdelivr.net/gh/jevko/jevko.js@v0.1.4/mod.js'
 
-const strToHeredoc = (str, tag) => `\`/${tag}/${str}/${tag}/`
+const {opener, closer, escaper, quoter} = defaultDelimiters
+
+const strToHeredoc = (str, tag) => `${escaper}${quoter}${tag}${quoter}${str}${quoter}${tag}${quoter}`
 
 export const jevkoToPrettyString = (jevko) => {
   const {subjevkos, suffix, tag} = jevko
@@ -16,7 +18,6 @@ export const jevkoToPrettyString = (jevko) => {
 
 const escapePrefix = (prefix) => prefix === ''? '': escape(prefix) + ' '
 
-//?todo: unhardcode []`
 const recur = (jevko, indent, prevIndent) => {
   const {subjevkos, suffix, tag} = jevko
 
@@ -32,5 +33,5 @@ const recur = (jevko, indent, prevIndent) => {
     }
     ret += prevIndent
   }
-  return '[' + ret + escape(suffix) + ']'
+  return opener + ret + escape(suffix) + closer
 }

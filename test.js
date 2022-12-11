@@ -8,7 +8,7 @@ title [jevkoconfig1 Example]
 
 owner [
   name [tester]
-  dob \`//2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]//
+  dob \`''2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]''
 ]
 
 database [
@@ -38,7 +38,7 @@ servers [
 ]
 
 embedded documents [
-  some json \`/json/
+  some json \`'json'
   { 
     "id": "b3df0d",
     "count": 55,
@@ -53,10 +53,10 @@ embedded documents [
     ],
     "parent": null 
   }
-  /json/
-  more json \`/json/55/json/
-  json string \`/json/"\\n\\tsomething\\u0000"/json/
-  json array \`/json/[1, 2, 3, 4, null]/json/
+  'json'
+  more json \`'json'55'json'
+  json string \`'json'"\\n\\tsomething\\u0000"'json'
+  json array \`'json'[1, 2, 3, 4, null]'json'
 ]
 `)
 
@@ -75,7 +75,7 @@ console.log(fromString(`array [
 console.log(fromString(`
 owner [
   name [tester]
-  dob \`//2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]//
+  dob \`''2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]''
   ' test ' [999]
   '' [value of the empty key]
   '  key with leading and trailing spaces  ' [value1]

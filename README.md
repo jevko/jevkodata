@@ -30,11 +30,11 @@ Jevko is closed under concatenation, so there is no need for JSON Lines, NDJSON,
 ```
 This is a comment
 
-title [jevkodata Example]
+title [jevkoconfig1 Example]
 
 owner [
   name [tester]
-  dob `//2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]//
+  dob `''2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]''
 ]
 
 database [
@@ -64,7 +64,7 @@ servers [
 ]
 
 embedded documents [
-  some json `/json/
+  some json `'json'
   { 
     "id": "b3df0d",
     "count": 55,
@@ -79,10 +79,10 @@ embedded documents [
     ],
     "parent": null 
   }
-  /json/
-  more json `/json/55/json/
-  json string `/json/"\n\tsomething\u0000"/json/
-  json array `/json/[1, 2, 3, 4, null]/json/
+  'json'
+  more json `'json'55'json'
+  json string `'json'"\n\tsomething\u0000"'json'
+  json array `'json'[1, 2, 3, 4, null]'json'
 ]
 ```
 
@@ -172,7 +172,7 @@ The example is based on the one from [TOML's homepage](https://toml.io/en/).
 Heredoc strings are supported like this:
 
 ```
-<key> `/<tag>/............./<tag>/
+<key> `'<tag>'.............'<tag>'
 ```
 
 `<tag>` is any user-defined delimiting identifier, can be empty.
@@ -180,7 +180,7 @@ Heredoc strings are supported like this:
 Example:
 
 ```
-dob `//2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]//
+dob `''2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]''
 ```
 
 parses to:
@@ -261,15 +261,15 @@ converts to:
 JSON values can be embedded in .jevkodata as follows:
 
 ```
-json object `/json/
+json object `'json'
 { 
   "id": "b3df0d",
   "count": 55
 }
-/json/
-json number `/json/55/json/
-json string `/json/"\n\tsomething\u0000"/json/
-json array `/json/[1, 2, 3, 4, null]/json/
+'json'
+json number `'json'55'json'
+json string `'json'"\n\tsomething\u0000"'json'
+json array `'json'[1, 2, 3, 4, null]'json'
 ```
 
 This will parse to:
