@@ -1,6 +1,6 @@
 import {JsonHigh} from 'https://cdn.jsdelivr.net/gh/xtao-org/jsonhilo@v0.3.0/mod.js'
 
-import {escape, stringToHeredoc as sth, defaultDelimiters} from 'https://cdn.jsdelivr.net/gh/jevko/jevko.js@v0.1.4/mod.js'
+import {escape, stringToHeredoc as sth, defaultDelimiters} from './deps.js'
 
 // note: this won't work correctly for keys (prefixes), so MUST NOT be used on them
 const stringToHeredoc = str => {

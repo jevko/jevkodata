@@ -1,4 +1,4 @@
-import {escape, defaultDelimiters} from 'https://cdn.jsdelivr.net/gh/jevko/jevko.js@v0.1.4/mod.js'
+import {escape, defaultDelimiters} from './deps.js'
 
 const {opener, closer, escaper, quoter} = defaultDelimiters
 

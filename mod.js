@@ -1,4 +1,4 @@
-import {jevkoFromString as parseJevkoWithHeredocs} from 'https://cdn.jsdelivr.net/gh/jevko/jevko.js@v0.1.4/mod.js'
+import {jevkoFromString as parseJevkoWithHeredocs} from './deps.js'
 
 import {fromJsonStr} from './fromJsonStr.js'
 import {jevkoToPrettyString} from './jevkoToPrettyString.js'
@@ -79,7 +79,7 @@ const inner = (jevko) => {
 
     return trimmed
   }
-  if (suffix.trim() !== '') throw Error('oops')
+  if (suffix.trim() !== '') throw Error(`Expected blank suffix, was: ${suffix}`)
 
   const sub0 = subjevkos[0]
 
