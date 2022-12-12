@@ -9,7 +9,7 @@ export const jevkodata = (jevko, props) => {
   // todo:
   // if (props.version)
 
-  if (Array.isArray(props.flags) && props.flags.includes('pretty')) {
+  if (props.pretty === true || (Array.isArray(props.flags) && props.flags.includes('pretty'))) {
     return JSON.stringify(convert(jevko), null, 2)
   }
   return JSON.stringify(convert(jevko))
