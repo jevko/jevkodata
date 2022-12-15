@@ -1,4 +1,4 @@
-import {fromString} from './mod.js'
+import {fromString, prettyFromJsonStr} from './mod.js'
 import { assertEquals } from "https://deno.land/std@0.165.0/testing/asserts.ts";
 
 Deno.test('readme example', () => {
@@ -177,4 +177,10 @@ Deno.test('empty string', () => {
     c: "",
     d: "  ",
   })
+})
+
+Deno.test('from json str -- "\'", "\'\'"', () => {
+  const jsonStr = `{"'":"'","''":"''"}`
+  const pretty = prettyFromJsonStr(jsonStr)
+  assertEquals(JSON.stringify(fromString(pretty)), jsonStr)
 })

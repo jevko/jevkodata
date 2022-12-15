@@ -21,7 +21,8 @@ const {opener, closer} = defaultDelimiters
 const convertValue = value => {
   if (typeof value === 'string') {
     const str = convertString(value)
-    if (str.length > value.length) return stringToHeredoc(value)
+    // note: convert ' into ['''], '' into [''''] rather than heredocs
+    if (str !== "'''" && str !== "''''" && str.length > value.length) return stringToHeredoc(value)
     return opener + str + closer
   }
 
