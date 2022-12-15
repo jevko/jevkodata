@@ -63,30 +63,50 @@ embedded documents [
 console.log(JSON.stringify(ret, null, 2))
 console.log(ret.database.test)
 
-console.log(fromString(`array [
-  Comment for the
-  frist value of an array
-  [1]
-  Comment for the
-  second value
-  [2]
-]`))
-
-console.log(fromString(`
-owner [
-  name [tester]
-  dob \`''2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]''
-  ' test ' [999]
-  '' [value of the empty key]
-  '  key with leading and trailing spaces  ' [value1]
-  'multiline
-  key' [value2]
-  ' padded
-  multiline key ' [value3]
-]
-`))
-
 console.log("TODO: turn the above console logs into proper tests")
+
+Deno.test('array with comments', () => {
+  const obj = fromString(`array [
+    Comment for the
+    frist value of an array
+    [1]
+    Comment for the
+    second value
+    [2]
+  ]`)
+
+  const arr = obj.array
+
+  assertEquals(arr.length, 2)
+  assertEquals(arr[0], 1)
+  assertEquals(arr[1], 2)
+})
+
+Deno.test('quoted keys', () => {
+  const obj = fromString(`
+  owner [
+    name [tester]
+    dob \`''2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]''
+    ' test ' [999]
+    '' [value of the empty key]
+    '  key with leading and trailing spaces  ' [value1]
+    'multiline
+    key' [value2]
+    ' padded
+    multiline key ' [value3]
+  ]
+  `)
+
+  const owner = obj.owner
+
+  assertEquals(owner.name, 'tester')
+  assertEquals(owner.dob, '2020-08-05T20:30:01+09:00[Asia/Tokyo][u-ca=japanese]')
+  assertEquals(owner[' test '], 999)
+  assertEquals(owner[''], 'value of the empty key')
+  assertEquals(owner['  key with leading and trailing spaces  '], 'value1')
+  assertEquals(owner['multiline\n    key'], 'value2')
+  assertEquals(owner[' padded\n    multiline key '], 'value3')
+})
 
 Deno.test('empty string', () => {
   const obj = fromString(`a [] b [  ] c [''] d ['  ']`)
