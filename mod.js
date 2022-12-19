@@ -20,6 +20,7 @@ export const fromString = (str) => convert(parseJevkoWithHeredocs(str))
 export const convert = (jevko) => inner(prep(jevko))
 
 export const prep = jevko => {
+  // todo: perhaps this should trim suffixes as well?
   const {subjevkos, ...rest} = jevko
 
   const subs = []
@@ -31,6 +32,8 @@ export const prep = jevko => {
     if (trimmed.startsWith("'")) {
       key = trimmed
     } else {
+      // todo: support ' keys ' preceded by comment lines
+
       // todo: configurable linebreak
       const lines = prefix.split('\n')
   
