@@ -112,7 +112,7 @@ export const map = subjevkos => {
       else key = prefix.slice(1)
     } else key = prefix
 
-    if (key in ret) throw Error('dupe')
+    if (key in ret) throw Error(`Duplicate key '${key}'`)
     ret[key] = inner(jevko)
   }
   return ret
