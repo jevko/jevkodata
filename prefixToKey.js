@@ -8,7 +8,7 @@ export const prefixToKey = (prefix) => {
     if (prefix[i] === "'") return finalTrim(prefix, i)
     const j = skipPastLineBreak(prefix, i)
     if (j === -1) return finalTrim(prefix, i)
-    // todo: extract comment line
+    // todo: extract comment line; comments could then be returned along with the key
     i = j
   }
   return ''
