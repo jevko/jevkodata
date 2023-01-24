@@ -93,7 +93,7 @@ const inner = (jevko) => {
 export const list = subjevkos => {
   const ret = []
   for (const {prefix, jevko} of subjevkos) {
-    if (prefix !== '') throw Error('oops')
+    if (prefix !== '') throw Error(`Nonblank prefix in list: ${prefix}`)
     ret.push(inner(jevko))
   }
   return ret
@@ -102,7 +102,7 @@ export const list = subjevkos => {
 export const map = subjevkos => {
   const ret = Object.create(null)
   for (const {prefix, jevko} of subjevkos) {
-    if (prefix === '') throw Error('oops')
+    if (prefix === '') throw Error(`Blank prefix in map: ${prefix}`)
 
     let key
     //?todo: extract & dedupe w/ inner
